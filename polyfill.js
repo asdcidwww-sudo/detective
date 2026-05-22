@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import crypto from 'node:crypto';
 
 // Polyfill the native crypto module object itself
 if (!crypto.getRandomValues) {
@@ -15,4 +15,3 @@ if (typeof globalThis.crypto === 'undefined') {
 } else if (typeof globalThis.crypto.getRandomValues === 'undefined') {
   globalThis.crypto.getRandomValues = crypto.getRandomValues;
 }
-
