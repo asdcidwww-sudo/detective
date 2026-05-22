@@ -53,6 +53,11 @@ export const SuspectsBoard: React.FC<SuspectsBoardProps> = ({ onIdentify }) => {
        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-24">
          {SUSPECTS.map(suspect => (
            <div key={suspect.id} className={`p-4 rounded-xl border-2 transition-all duration-300 ${selectedSuspect === suspect.id ? 'border-blue-500 bg-blue-900/20 shadow-lg scale-105 z-10' : 'border-slate-700 bg-slate-800 hover:border-slate-600'}`}>
+             {suspect.avatarUrl && (
+               <div className="w-full aspect-[4/3] rounded-lg overflow-hidden mb-3 border border-slate-700 bg-slate-950 shadow-inner">
+                 <img src={suspect.avatarUrl} alt={suspect.name} className="w-full h-full object-cover object-top" />
+               </div>
+             )}
              <h3 className="font-bold text-lg text-amber-100">{suspect.name}</h3>
              <p className="text-sm text-slate-400 mt-2">{suspect.description}</p>
              

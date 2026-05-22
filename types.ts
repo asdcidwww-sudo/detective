@@ -10,6 +10,7 @@ export interface Suspect {
   motive: string; // Detailed background/motive story
   dnaProfile: number[]; // Array of band positions (0-100)
   avatarPrompt: string; // Prompt to generate their face
+  avatarUrl?: string; // Local pre-generated avatar image URL
 }
 
 export enum GameStep {

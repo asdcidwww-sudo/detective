@@ -29,15 +29,17 @@ export const SUSPECTS: Suspect[] = [
     description: "一直在打掃衛生，但今天看起來很緊張。穿著藍色連體工作服。",
     motive: "最近因為實驗室總是太亂而被校長嚴厲批評。他曾抱怨說：「如果沒有這些該死的實驗設備，我的工作會輕鬆得多！」也許他是為了減少工作量而藏起了顯微鏡？",
     dnaProfile: [10, 25, 45, 60, 80],
-    avatarPrompt: "Victorian style portrait of a nervous janitor, sweaty, blue jumpsuit, oil painting style"
+    avatarPrompt: "Victorian style portrait of a nervous janitor, sweaty, blue jumpsuit, oil painting style",
+    avatarUrl: "/images/suspect_janitor.png"
   },
   {
     id: 2,
     name: "比克老師 (科學狂人)",
     description: "熱愛科學和棒棒糖。白大褂上沾滿了五顏六色的化學試劑。",
-    motive: "她最近癡迷於研究「超級棒棒糖」的內部晶體結構。她多次申請使用高精度設備被拒。金顯微鏡是全校唯一能滿足她研究需求的設備。",
+    motive: "她最近癡迷於研究「超級棒棒糖」的內部晶体結構。她多次申請使用高精度設備被拒。金顯微鏡是全校唯一能滿足她研究需求的設備。",
     dnaProfile: [15, 30, 50, 65, 90],
-    avatarPrompt: "Victorian style portrait of a female science teacher, crazy hair, holding sweets, colorful lab coat, oil painting style"
+    avatarPrompt: "Victorian style portrait of a female science teacher, crazy hair, holding sweets, colorful lab coat, oil painting style",
+    avatarUrl: "/images/suspect_teacher.png"
   },
   {
     id: 3,
@@ -45,7 +47,8 @@ export const SUSPECTS: Suspect[] = [
     description: "以惡作劇聞名。帶著反戴的鴨舌帽，拿著滑板。",
     motive: "全校著名的搗蛋鬼。下週就是期末考試了，他曾揚言要搞個「大新聞」讓考試取消。偷走核心教學設備確實能讓實驗室停擺。",
     dnaProfile: [20, 35, 55, 70, 85],
-    avatarPrompt: "Victorian style portrait of a mischievous student boy, cap backwards, smirk, oil painting style"
+    avatarPrompt: "Victorian style portrait of a mischievous student boy, cap backwards, smirk, oil painting style",
+    avatarUrl: "/images/suspect_student.png"
   }
 ];
 

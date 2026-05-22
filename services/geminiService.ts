@@ -45,12 +45,37 @@ export const sendMessageToHolmes = async (text: string): Promise<AsyncIterable<s
   return streamResponse();
 };
 
+const LOCAL_BG_MAPPING: Record<string, string> = {
+  "London street, baker street exterior, foggy, victorian era, mystery atmosphere, oil painting style, high quality": "/images/bg_intro.png",
+  "Victorian science laboratory interior, messy desk, broken glass, mysterious atmosphere, golden light, steampunk details, detailed illustration": "/images/bg_scene.png",
+  "Close up of a chemistry set, beakers with colorful liquids, microscope, glowing dna helix hologram, magical science atmosphere": "/images/bg_extraction.png",
+  "Scientific gel electrophoresis machine, glowing blue light, electrical sparks, steampunk laboratory equipment, detailed": "/images/bg_pcr.png"
+};
+
 // Generate high quality sketches (usually unique per request, so less caching needed)
 export const generateSuspectSketch = async (
   prompt: string, 
   size: ImageSize
 ): Promise<string> => {
   const apiKey = process.env.API_KEY || '';
+  
+  // Intelligent offline/poor-network fallback
+  if (!apiKey || navigator.onLine === false) {
+    console.log("No API Key or offline, using pre-generated local suspect images fallback");
+    const lowerPrompt = prompt.toLowerCase();
+    if (lowerPrompt.includes("科學") || lowerPrompt.includes("科学") || lowerPrompt.includes("老師") || lowerPrompt.includes("老师") || lowerPrompt.includes("比克")) {
+      return "/images/suspect_teacher.png";
+    }
+    if (lowerPrompt.includes("清潔") || lowerPrompt.includes("清洁") || lowerPrompt.includes("掃") || lowerPrompt.includes("扫") || lowerPrompt.includes("史威普")) {
+      return "/images/suspect_janitor.png";
+    }
+    if (lowerPrompt.includes("蒂米") || lowerPrompt.includes("搗蛋") || lowerPrompt.includes("捣蛋") || lowerPrompt.includes("學生") || lowerPrompt.includes("学生")) {
+      return "/images/suspect_student.png";
+    }
+    // Default fallback
+    return "/images/suspect_teacher.png";
+  }
+
   const ai = getAIClient(apiKey);
 
   const response = await ai.models.generateContent({
@@ -82,6 +107,11 @@ export const generateSuspectSketch = async (
 
 // Generate background scenes with caching logic
 export const generateSceneBackground = async (prompt: string): Promise<string> => {
+  // Check local mapping first for offline / bad network instant load
+  if (LOCAL_BG_MAPPING[prompt]) {
+    return LOCAL_BG_MAPPING[prompt];
+  }
+
   // Check cache first
   if (backgroundCache[prompt]) {
     return backgroundCache[prompt];
